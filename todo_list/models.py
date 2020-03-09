@@ -5,6 +5,10 @@ class List(models.Model):
     completed = models.BooleanField(default=False)
 
     def __str__(self):
-        return self.item
+        if self.completed == True:
+            status = 'Completed'
+        else:
+            status = 'Not Completed'
+        return self.item + ' | ' + status
 
     
