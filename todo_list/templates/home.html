@@ -4,21 +4,40 @@
 
 <div class="container">
 
-    <h3>hello world !</h3>
+    <h3>Tasks :</h3>
     {% if tasks %}
-    <ul class="collection with-header">
-        <li class="collection-header">
-            <h4>Tasks : </h4>
-        </li>
+    <table class="responsive-table grey lighten-5">
 
-        {% for task in tasks %}
-        <li class="collection-item">
-            <div> {{task.item}} <span
-                    class="secondary-content">{{task.completed|yesno:"Completed, Not Completed"}}</span></div>
-        </li>
-        {% endfor %}
-    </ul>
+        <thead>
+            <tr>
+                <th>task</th>
+                <th>status</th>
+                <th>action</th>
+
+            </tr>
+        </thead>
+
+        <tbody>
+            {% for task in tasks %}
+            <tr class=" {{ task.completed|yesno:'grey lighten-2,' }} ">
+
+                <td> 
+                    {{ task.completed|yesno:'<del>,'|safe}}
+                        {{task.item}}  
+                    {{ task.completed|yesno:'</del>,'|safe}}
+                </td>
+
+                <td>{{task.completed|yesno:"Completed, Not Completed"}}</td>
+                <td>Delete</td>
+            </tr>
+            {% endfor %}
+
+
+        </tbody>
+    </table>
     {% endif %}
+    
+
 </div>
 
 {% endblock content %}
