@@ -43,7 +43,12 @@
                     {{ task.completed|yesno:'</del>,'|safe}}
                 </td>
 
-                <td>{{task.completed|yesno:"Completed, Not Completed"}}</td>
+                <td>
+                <a href ="{% url 'reverse' task.id %} ">
+                {{task.completed|yesno:"Cross Off,Cross"}}
+                </a>
+                </td>
+
                 <td> <a href="{% url 'delete' task.id %} ">Delete </a> </td>
             </tr>
             {% endfor %}

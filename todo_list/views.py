@@ -22,3 +22,16 @@ def delete(request, id):
     messages.success(request, 'Task has been deleted from the list')
 
     return redirect('home')
+
+def reverse(request, id):
+    item = get_object_or_404(List, pk=id)
+
+    #reversing the bool value
+    item.completed = not item.completed
+
+    item.save()
+    note = 'Crossed' if item.completed == True else "Crossed off"
+    
+    messages.success(request, f'Task has been {note}')
+
+    return redirect('home')
