@@ -28,10 +28,9 @@ def reverse(request, id):
 
     #reversing the bool value
     item.completed = not item.completed
-
     item.save()
-    note = 'Crossed' if item.completed == True else "Crossed off"
-    
+
+    note = 'Crossed' if item.completed == True else "Un Crossed"
     messages.success(request, f'Task has been {note}')
 
     return redirect('home')
