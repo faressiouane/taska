@@ -41,6 +41,7 @@
                     {{ task.completed|yesno:'<del>,'|safe}}
                     {{task.item}}
                     {{ task.completed|yesno:'</del>,'|safe}}
+                    (<a href="{% url 'edit' task.id %}">edit</a>)
                 </td>
 
                 <td>

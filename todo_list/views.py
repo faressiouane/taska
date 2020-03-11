@@ -34,3 +34,20 @@ def reverse(request, id):
     messages.success(request, f'Task has been {note}')
 
     return redirect('home')
+
+def edit(request, id):
+    if request.method == "POST":
+        item = get_object_or_404(List, pk = id)
+        form = ListForm(request.POST or None, instance=item)
+
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Task has been updated !')
+        else:
+            messages.success(request, 'could not update ypur task') 
+
+        return redirect('home')
+
+    else:
+        item = get_object_or_404(List, pk = id)
+        return render(request, 'edit.html', {'task' : item})
