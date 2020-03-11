@@ -3,17 +3,18 @@
 {% block content %}
 
 {% if messages %}
-  <div class="row">
+<div class="row">
     <div class="col s12">
-      <div class="card-panel teal">
-        <span class="white-text">
-            {% for msg in messages %}
+        <div class="card-panel teal">
+            <span class="white-text">
+                {% for msg in messages %}
                 {{msg}}
-            {% endfor %}
-        </span>
-      </div>
+           
+                {% endfor %}
+            </span>
+        </div>
     </div>
-  </div>
+</div>
 {% endif %}
 
 
@@ -36,14 +37,14 @@
             {% for task in tasks %}
             <tr class=" {{ task.completed|yesno:'grey lighten-2,' }} ">
 
-                <td> 
+                <td>
                     {{ task.completed|yesno:'<del>,'|safe}}
-                        {{task.item}}  
+                    {{task.item}}
                     {{ task.completed|yesno:'</del>,'|safe}}
                 </td>
 
                 <td>{{task.completed|yesno:"Completed, Not Completed"}}</td>
-                <td>Delete</td>
+                <td> <a href="{% url 'delete' task.id %} ">Delete </a> </td>
             </tr>
             {% endfor %}
 
@@ -51,7 +52,7 @@
         </tbody>
     </table>
     {% endif %}
-    
+
 
 </div>
 

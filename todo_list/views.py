@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from .models import List
 from .forms import ListForm
 from django.contrib import messages
@@ -14,3 +14,11 @@ def home(request):
     else:
         tasks = List.objects.all()
         return render(request, 'home.html', {'tasks' : tasks,})
+
+def delete(request, id):
+    # item = List.objects.get(id = id)
+    item = get_object_or_404(List, pk=id)
+    item.delete()
+    messages.success(request, 'Task has been deleted from the list')
+
+    return redirect('home')
